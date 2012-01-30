@@ -30,8 +30,25 @@ public class DefaultDisjointSet<T> implements DisjointSet<T> {
 		
 	}
 	public void createSet(T element) {
-		// TODO Auto-generated method stub
 		
+		/**
+		 * If this is a new element not in the set, expand the array to add the new element.
+		 * otherwise, this is a request to remove the element from membership in any set
+		 */
+		
+		if(!index.containsKey(element)) {
+			
+			int len = delegate.length;
+			int[] newDelegate = new int[len + 1];
+			System.arraycopy(delegate, 0, newDelegate, 0, len);
+			index.put(element, len);
+			newDelegate[len] = -1;
+			invertedIndex.put(len, element);
+			delegate = newDelegate;
+		}else {
+			
+			delegate[index.get(element)] = -1;
+		}
 	}
 
 	public T findSet(T element) {
