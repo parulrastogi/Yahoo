@@ -12,4 +12,8 @@ dependencies {
 
 }
 
+test {
+
+	jvmArgs '-Xmx768m'
+}
 apply plugin : 'eclipse'

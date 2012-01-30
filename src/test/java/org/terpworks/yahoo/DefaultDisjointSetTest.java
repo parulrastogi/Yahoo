@@ -53,4 +53,20 @@ public class DefaultDisjointSetTest {
 		assertEquals(representative, (Integer)1);
 		
 	}
+	
+	@Test
+	public void testPerformance() {
+		
+		int SIZE = 1000000;
+		Integer [] elements = new Integer[SIZE];
+		for(int i=0;i<SIZE;i++)
+			elements[i]=i;
+		DefaultDisjointSet<Integer> set = new DefaultDisjointSet<Integer>(elements);
+		
+		long start = System.currentTimeMillis();
+		for(int n=1;n<100000;n++)
+			set.mergeSet(2*n, 4*n);
+		
+		System.out.println(System.currentTimeMillis() - start);
+	}
 }
