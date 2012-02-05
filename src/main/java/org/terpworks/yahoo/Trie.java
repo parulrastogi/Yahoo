@@ -1,7 +1,15 @@
 package org.terpworks.yahoo;
 
-import java.util.BitSet;
-
+/**
+ * Inspired by Phil Bagwell's Ideal Hash Trees paper.
+ * An Array Mapped Trie implementation that uses an Integer 
+ * bit mask to quickly identify the sub arcs that are represented
+ * by a given node. The count pop instruction then gives a fast 
+ * index into an array containing the specific sub arc of interest.
+ * 
+ * @author harsha
+ *
+ */
 public class Trie {
 
 	
