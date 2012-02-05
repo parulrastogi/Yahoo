@@ -1,5 +1,8 @@
 package org.terpworks.Autocomplete;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
 import java.util.ArrayList;
 import java.util.LinkedList;
 
@@ -31,7 +34,7 @@ public class Trei {
 		char[] characters=word.toLowerCase().toCharArray();
 		int i =0;
 		Node currNode=tree.root;
-		while(currNode.next[characters[i]-97]!=null){
+		while(i< characters.length  && currNode.next[characters[i]-97]!=null){
 			currNode=currNode.next[characters[i]-97];
 			i++;
 		}
@@ -107,21 +110,32 @@ public class Trei {
 	}
 
 	
-	public static void main(String args[]){
-		Trei tree = new Trei();
-		Trei.insert(tree, "broth");
-		Trei.insert(tree, "brother");
-		Trei.insert(tree, "broil");
-		Trei.insert(tree, "broke");
-		Trei.insert(tree, "broken");
-		Trei.insert(tree, "bromine");
-		if(Trei.find(tree, "bro")){
-			System.out.println("found");
+	public static void main(String args[]) throws Exception{
+		
+		
+		
+		
+		File dictionary = new File("/usr/share/dict/words");
+		BufferedReader reader = new BufferedReader(new FileReader(dictionary));
+		String word;
+		Trei trie = new Trei();
+		while((word = reader.readLine())!=null) {
+			
+			Trei.insert(trie, word);
 		}
-		else{
-			System.out.println("not found");
-		}
-		Trei.beginsWith(tree, "bro", 4);
+		
+		reader.close();
+		
+		/**
+		 * Check for positive matches
+		 * aardvark, abandon, zymotic, zygote
+		 */
+		assert(Trei.find(trie, "aardvark"));
+		assert(Trei.find(trie, "abandon"));
+		assert(Trei.find(trie, "zymotic"));
+		assert(Trei.find(trie, "zygote"));
+		
+		
 	}
 	
 	
