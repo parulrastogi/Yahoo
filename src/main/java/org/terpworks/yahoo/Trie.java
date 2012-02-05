@@ -39,7 +39,7 @@ public class Trie {
 	 */
 	private static class Node  {
 		
-		private BitSet mask = new BitSet(32);
+		private int mask = 0;
 		Node[] nodes = new Node[0];
 		private boolean terminating;
 		
@@ -54,23 +54,25 @@ public class Trie {
 		public int setMask(char letter) {
 			
 			int bitIndex = (int)Character.toLowerCase(letter) - 97;
-			mask.set(bitIndex);
+			mask|= (1<< bitIndex);
 			return bitIndex;
 		}
 		
 		public boolean isSetMask(char letter) {
 			
-			return mask.get((int)Character.toLowerCase(letter) - 97);
+			int bitIndex = (int)Character.toLowerCase(letter) - 97;
+			return (mask & (1 << bitIndex)) != 0;
 		}
 		
 		public int computeIndexIntoArray(int bitMaskIndex) {
 			
+			int p = 0;
 			int count = 0;
-			for(int i=0;i<bitMaskIndex;i++) {
+			while(count++ < bitMaskIndex) {
 				
-				if(mask.get(i)) ++count;
+				p|= 1<< count;
 			}
-			return count;
+			return Integer.bitCount(mask & p);
 		}
 		
 		public boolean containsEntry(String entry) {
