@@ -66,13 +66,8 @@ public class Trie {
 		
 		public int computeIndexIntoArray(int bitMaskIndex) {
 			
-			int p = 0;
-			int count = 0;
-			while(count++ < bitMaskIndex) {
-				
-				p|= 1<< count;
-			}
-			return Integer.bitCount(mask & p);
+			int shiftRightCount = 31 - bitMaskIndex;
+			return Integer.bitCount(mask << shiftRightCount);
 		}
 		
 		public boolean containsEntry(String entry) {
