@@ -1,1 +1,30 @@
-README
+Problems :
+
+1. Iterate in Clojure lazily computes a stream of the form (x, f(x), f(f(x)), ...) where f is the function to be applied and x is the data.
+Implement Iterate in Java. 
+
+2. Various Hash Map implementations in order of sophistication :  i) the basic hash map, 2) how to ensure thread safety? 3)what if reads need to happen very fast
+without locking? 4) How to deal with versioning? 5) Which approach works best? Optimistic locking, MVCC, non blocking algorithm? 6) What if we need the cache to be
+persistent?
+
+3. Least Common Ancestor problem. How to compute the LCA given two nodes in a tree? Offline and Online cases?
+
+4. Binary Search
+
+5. Quick Sort
+
+6. Heap Sort
+
+7. k-th smallest element from an unsorted list of n elements.
+
+8. Least Common Multiple
+
+9. How would you implement a URL shortener?
+
+10. Design an LRU cache
+
+11. Given a sequence of integers, compute the subsequence with the maximal sum
+
+12. Given a sequence of n^2 + 1 integers, there is an increasing/ decreasing sequence of length at least n+1. Prove
+
+
